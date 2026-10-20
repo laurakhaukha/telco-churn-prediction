@@ -1,0 +1,301 @@
+{
+  "data": {
+    "n_customers": 7043,
+    "churn_rate": 0.2653698707936959,
+    "n_train": 5634,
+    "n_test": 1409
+  },
+  "cross_validation": {
+    "baseline": {
+      "label": "Baseline (predict churn rate)",
+      "roc_auc_mean": 0.5,
+      "roc_auc_std": 0.0,
+      "average_precision_mean": 0.2653532460941748,
+      "average_precision_std": 9.424729039040346e-05,
+      "brier_mean": 0.19494090587420038,
+      "best_params": {}
+    },
+    "logreg": {
+      "label": "Logistic regression",
+      "roc_auc_mean": 0.8503642817984176,
+      "roc_auc_std": 0.011514187134055859,
+      "average_precision_mean": 0.6729632452092305,
+      "average_precision_std": 0.014950221760745452,
+      "brier_mean": 0.13292048603432308,
+      "best_params": {
+        "C": 10.0
+      }
+    },
+    "random_forest": {
+      "label": "Random forest",
+      "roc_auc_mean": 0.8480996062538088,
+      "roc_auc_std": 0.009893914918450724,
+      "average_precision_mean": 0.6639706912023645,
+      "average_precision_std": 0.018800407134868722,
+      "brier_mean": 0.13468412056524903,
+      "best_params": {
+        "max_features": "sqrt",
+        "min_samples_leaf": 25
+      }
+    },
+    "gradient_boosting": {
+      "label": "Gradient boosting",
+      "roc_auc_mean": 0.8486150045468923,
+      "roc_auc_std": 0.010956213695523503,
+      "average_precision_mean": 0.6640307892472972,
+      "average_precision_std": 0.023673082706625985,
+      "brier_mean": 0.13393287101079293,
+      "best_params": {
+        "learning_rate": 0.03,
+        "max_leaf_nodes": 7,
+        "min_samples_leaf": 20
+      }
+    }
+  },
+  "selected_model": "logreg",
+  "feature_ablation": [
+    {
+      "features": "raw columns only",
+      "roc_auc_mean": 0.8463914680855682,
+      "roc_auc_std": 0.012826757823451964
+    },
+    {
+      "features": "+ log_tenure",
+      "roc_auc_mean": 0.8503642817984176,
+      "roc_auc_std": 0.011514187134055859
+    },
+    {
+      "features": "+ n_addons",
+      "roc_auc_mean": 0.8463543032714863,
+      "roc_auc_std": 0.01282467939862157
+    },
+    {
+      "features": "+ auto_pay",
+      "roc_auc_mean": 0.8463745052774797,
+      "roc_auc_std": 0.01278930128017789
+    },
+    {
+      "features": "+ charge_drift",
+      "roc_auc_mean": 0.8457597014123783,
+      "roc_auc_std": 0.012833700891569233
+    },
+    {
+      "features": "+ all four",
+      "roc_auc_mean": 0.8496525549974484,
+      "roc_auc_std": 0.011480251026037197
+    }
+  ],
+  "test": {
+    "baseline": {
+      "roc_auc": 0.5,
+      "average_precision": 0.2654364797728886,
+      "brier": 0.1949799619120813,
+      "log_loss": 0.5786668578341829,
+      "calibration_error": 0.02595049875880319
+    },
+    "logreg": {
+      "roc_auc": 0.8464491461933917,
+      "average_precision": 0.6607555061844039,
+      "brier": 0.13531332404947577,
+      "log_loss": 0.4138777291637769,
+      "calibration_error": 0.02367854039144233
+    },
+    "random_forest": {
+      "roc_auc": 0.8456224650598051,
+      "average_precision": 0.6587977164045963,
+      "brier": 0.13545908349174107,
+      "log_loss": 0.4159249610320561,
+      "calibration_error": 0.020547378389352923
+    },
+    "gradient_boosting": {
+      "roc_auc": 0.846834069596218,
+      "average_precision": 0.6639500163512256,
+      "brier": 0.13490045094535863,
+      "log_loss": 0.4146469472101914,
+      "calibration_error": 0.019703236182495837
+    }
+  },
+  "campaign": {
+    "assumptions": {
+      "contact_cost": 5.0,
+      "incentive_cost": 50.0,
+      "save_rate": 0.3,
+      "value_months": 12,
+      "gross_margin": 0.6
+    },
+    "policies": {
+      "model": {
+        "customers_contacted": 522,
+        "share_contacted": 0.37047551454932576,
+        "churners_reached": 269,
+        "share_of_churners_reached": 0.7192513368983957,
+        "precision": 0.5153256704980843,
+        "profit": 27250.623999999996,
+        "profit_per_1000_customers": 19340.40028388928
+      },
+      "month_to_month_rule": {
+        "customers_contacted": 773,
+        "share_contacted": 0.5486160397444997,
+        "churners_reached": 329,
+        "share_of_churners_reached": 0.8796791443850267,
+        "precision": 0.425614489003881,
+        "profit": 19367.42,
+        "profit_per_1000_customers": 13745.507452093681
+      },
+      "everyone": {
+        "customers_contacted": 1409,
+        "share_contacted": 1.0,
+        "churners_reached": 374,
+        "share_of_churners_reached": 1.0,
+        "precision": 0.2654364797728886,
+        "profit": -5620.816000000003,
+        "profit_per_1000_customers": -3989.2235628105063
+      },
+      "nobody": {
+        "customers_contacted": 0,
+        "share_contacted": 0.0,
+        "churners_reached": 0,
+        "share_of_churners_reached": 0.0,
+        "precision": 0.0,
+        "profit": 0.0,
+        "profit_per_1000_customers": 0.0
+      },
+      "perfect_foresight": {
+        "customers_contacted": 374,
+        "share_contacted": 0.2654364797728886,
+        "churners_reached": 374,
+        "share_of_churners_reached": 1.0,
+        "precision": 1.0,
+        "profit": 51304.183999999994,
+        "profit_per_1000_customers": 36411.77004968062
+      },
+      "random": {
+        "customers_contacted": 522,
+        "share_contacted": 0.37047551454932576,
+        "churners_reached": 138.55784244144783,
+        "share_of_churners_reached": 0.37047551454932576,
+        "precision": 0.2654364797728886,
+        "profit": -2082.3746997870844,
+        "profit_per_1000_customers": -1477.909652084517
+      }
+    },
+    "bootstrap": {
+      "n_boot": 2000,
+      "roc_auc_95ci": [
+        0.8237044140982563,
+        0.8672252056772111
+      ],
+      "model_profit_per_1000_95ci": [
+        15582.659616749466,
+        22983.274095102905
+      ],
+      "model_minus_rule_per_1000_95ci": [
+        3874.7271114265454,
+        7405.489850958127
+      ],
+      "model_beats_rule_share": 1.0,
+      "model_minus_everyone_per_1000_95ci": [
+        20691.273598296662,
+        25681.720014194467
+      ]
+    },
+    "sensitivity_to_save_rate": [
+      {
+        "save_rate": 0.1,
+        "model": 2712.0227111426548,
+        "model_share_contacted": 0.177430801987225,
+        "month_to_month_rule": -7750.787792760824,
+        "everyone": -29148.525195173883
+      },
+      {
+        "save_rate": 0.2,
+        "model": 10249.39105748758,
+        "model_share_contacted": 0.30872959545777146,
+        "month_to_month_rule": 2997.3598296664304,
+        "everyone": -16568.874378992194
+      },
+      {
+        "save_rate": 0.3,
+        "model": 19340.40028388928,
+        "model_share_contacted": 0.37047551454932576,
+        "month_to_month_rule": 13745.507452093681,
+        "everyone": -3989.2235628105063
+      },
+      {
+        "save_rate": 0.4,
+        "model": 30063.67068843151,
+        "model_share_contacted": 0.41305890702625975,
+        "month_to_month_rule": 24493.655074520935,
+        "everyone": 8590.427253371186
+      },
+      {
+        "save_rate": 0.5,
+        "model": 40638.63733144073,
+        "model_share_contacted": 0.44286728176011353,
+        "month_to_month_rule": 35241.802696948194,
+        "everyone": 21170.078069552874
+      }
+    ]
+  },
+  "grouped_permutation_importance": [
+    {
+      "feature": "Tenure & total charges",
+      "columns": [
+        "tenure",
+        "TotalCharges"
+      ],
+      "mean": 0.09114,
+      "std": 0.00649
+    },
+    {
+      "feature": "Services & monthly price",
+      "columns": [
+        "InternetService",
+        "OnlineSecurity",
+        "OnlineBackup",
+        "DeviceProtection",
+        "TechSupport",
+        "StreamingTV",
+        "StreamingMovies",
+        "PhoneService",
+        "MultipleLines",
+        "MonthlyCharges"
+      ],
+      "mean": 0.08965,
+      "std": 0.00922
+    },
+    {
+      "feature": "Contract type",
+      "columns": [
+        "Contract"
+      ],
+      "mean": 0.05289,
+      "std": 0.00576
+    },
+    {
+      "feature": "Payment method & billing",
+      "columns": [
+        "PaymentMethod",
+        "PaperlessBilling"
+      ],
+      "mean": 0.00413,
+      "std": 0.00243
+    },
+    {
+      "feature": "Demographics",
+      "columns": [
+        "gender",
+        "SeniorCitizen",
+        "Partner",
+        "Dependents"
+      ],
+      "mean": 0.0013,
+      "std": 0.00095
+    }
+  ],
+  "versions": {
+    "scikit-learn": "1.9.1",
+    "pandas": "3.0.5",
+    "numpy": "2.5.3"
+  }
+}
