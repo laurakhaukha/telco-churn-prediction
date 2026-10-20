@@ -136,21 +136,6 @@ So linked columns are shuffled together. For the same reason, the model's indivi
 - **Correlation, not causation.** Fibre customers churn more, but this data can't tell whether that's the product, the price or the type of customer it attracts.
 - **Single dataset.** This is a public sample dataset of one (fictional) telecom company.
 
-## Run it yourself
-
-```bash
-git clone https://github.com/<your-username>/telco-churn-prediction.git
-cd telco-churn-prediction
-python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install -r requirements.txt -r requirements-dev.txt
-
-python -m churn.data        # download the dataset (~1 MB) into data/raw/
-python -m churn.pipeline    # train, evaluate, write reports/ and models/ (~1 minute)
-python -m pytest -q         # 28 tests, run on synthetic data (no download needed)
-```
-
-Or use `make all` (download + train + test).
-
 **Try different business assumptions:**
 
 ```bash
